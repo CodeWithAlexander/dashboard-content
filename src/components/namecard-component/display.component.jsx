@@ -40,6 +40,7 @@ const Display = () => {
                 <Typography
                     align={'center'}
                     variant='h4'
+                    color={'#00664F'}
                 >
                     {` Welcome ${name}`}
                 </Typography>
