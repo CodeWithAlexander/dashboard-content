@@ -64,7 +64,7 @@ const Results = () => {
 
                 {results}
 
-            </Grid>
+            </Grid> 
         </div>
     )
 }
