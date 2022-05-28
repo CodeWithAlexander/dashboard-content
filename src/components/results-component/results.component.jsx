@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid';
 import { CardContent, Typography, Box, Card } from '@mui/material';
-import './results.css'
 
 const Results = () => {
 
