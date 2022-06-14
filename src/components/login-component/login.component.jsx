@@ -8,6 +8,7 @@ import { useState } from 'react';
 
 
 const Login = (props) => {
+    const BaseUrl='http://localhost:8000/'
     const [username, setUsername] = useState("");
     const [pass1, setPass1] = useState("");
     let data = new FormData();
@@ -19,12 +20,18 @@ const Login = (props) => {
         e.preventDefault();
 
         axios.post
-            ("http://localhost:8000/signin",data
+            (`${BaseUrl}signin`,data
                 , { headers: { "Content-Type": "application/json" } })
             .then((res) => {
-                //reset form and inform user that form was sent
-                props.setUsername(res.data.username);
-                console.log(username);
+                if(res.data.Status!=null){
+                    console.log(res.data.Status);
+              
+                }
+                else{
+                    props.setUsername(res.data.username);
+                    console.log(username);
+                }
+                
                         })  
             .catch((err) => {
                 //if error (log)
