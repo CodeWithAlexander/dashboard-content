@@ -4,22 +4,27 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import axios from "axios";
 import { useState } from 'react';
 
-const baseUrl = "http://localhost:8000";
 
 
-const Login = () => {
+
+const Login = (props) => {
     const [username, setUsername] = useState("");
     const [pass1, setPass1] = useState("");
+    let data = new FormData();
+    data.append("username", username)  
+    data.append("pass1", pass1)
+    data.append("csrfmiddlewaretoken", '{{csrf_token}}')
+    
     const handleSubmit = (e) => {
         e.preventDefault();
+
         axios.post
-            ("http://localhost:8000/signin", JSON.stringify({
-                username
-                , pass1
-            })
+            ("http://localhost:8000/signin",data
                 , { headers: { "Content-Type": "application/json" } })
             .then((res) => {
                 //reset form and inform user that form was sent
+                props.setUsername(res.data.username);
+                console.log(username);
                         })  
             .catch((err) => {
                 //if error (log)
@@ -38,13 +43,13 @@ const Login = () => {
                     <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
-                <form method="post" onSubmit={handleSubmit}>
+                <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
                     <TextField label='username' onChange={(e) => setUsername(e.target.value)} placeholder='Enter username' fullWidth required />
                     <TextField label='passowrd' onChange={(e) => setPass1(e.target.value)} placeholder='Enter password' type='password' fullWidth required />
                     <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
                 </form>
                 <Typography > Do you have an account ?
-                    <Link href="signup" >
+                    <Link href="/signup" >
                         Sign Up
                     </Link>
                 </Typography>

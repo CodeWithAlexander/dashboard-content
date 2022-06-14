@@ -18,15 +18,14 @@ import { mainListItems, secondaryListItems } from '../sidemenu-component/menu.co
 import Chart from '../chart-component/chart.component';
 import Display from '../namecard-component/display.component';
 import Results from '../results-component/results.component';
-
+import { useState } from 'react'
 
 
 const drawerWidth = 240;
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
-  backgroundColor:'#00664F',
+  backgroundColor: '#00664F',
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -75,6 +74,7 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -147,7 +147,8 @@ function DashboardContent() {
             <Grid container spacing={3}>
               {/* name */}
               <Grid item xs={12}>
-                <Display />
+                <Display
+                   />
               </Grid>
               {/* Chart */}
               <Grid item xs={12}>
@@ -161,10 +162,10 @@ function DashboardContent() {
                 </Paper>
               </Grid>
               <Grid item xs={12}>
-                  <Results />
+                <Results />
               </Grid>
             </Grid>
-            
+
 
           </Container>
         </Box>
@@ -174,5 +175,6 @@ function DashboardContent() {
 }
 
 export default function Dashboard() {
-  return <DashboardContent />;
+  return <DashboardContent
+     />;
 }

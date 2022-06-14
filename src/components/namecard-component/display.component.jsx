@@ -15,14 +15,14 @@ const theme = createTheme({
 const Display = () => {
     //state used to store name
     const [name, setName] = useState("");
-
+    
     //get username from database happens once onload stored in useeffect to be called once
     useEffect(() => {
         const getUserName = async () => {
             try {
 
                 //here you would set name to res.data (depending on what you are sending here from the database)
-                setName("Alexander Abou Chedid");
+                setName('alex');
 
             } catch (err) {
                 //depends on what the error message is stored as in the backend
