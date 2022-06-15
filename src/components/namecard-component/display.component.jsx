@@ -22,7 +22,7 @@ const Display = () => {
             try {
 
                 //here you would set name to res.data (depending on what you are sending here from the database)
-                setName('alex');
+                setName(localStorage.getItem('username'));
 
             } catch (err) {
                 //depends on what the error message is stored as in the backend

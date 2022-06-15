@@ -9,6 +9,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { Link } from "react-router-dom";
+
 
 export const mainListItems = (
   <React.Fragment>
@@ -46,6 +48,7 @@ export const mainListItems = (
 );
 
 export const secondaryListItems = (
+
   <React.Fragment>
     <ListSubheader component="div" inset>
       Saved reports
@@ -62,11 +65,13 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Last quarter" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to="/" onClick={()=>{
+      localStorage.removeItem('username')
+    }}>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton>
+      <ListItemText primary="Sign Out"/>
+    </ListItemButton >
   </React.Fragment>
 );

@@ -3,11 +3,15 @@ import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@mater
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import axios from "axios";
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+
 
 
 
 
 const Login = (props) => {
+    const navigate = useNavigate();
     const BaseUrl='http://localhost:8000/'
     const [username, setUsername] = useState("");
     const [pass1, setPass1] = useState("");
@@ -28,7 +32,9 @@ const Login = (props) => {
               
                 }
                 else{
-                    props.setUsername(res.data.username);
+                    const username1 = res.data.username
+                    localStorage.setItem('username', username1);
+                    navigate("/dashboard");
                     console.log(username);
                 }
                 
