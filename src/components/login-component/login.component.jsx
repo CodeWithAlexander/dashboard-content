@@ -58,7 +58,7 @@ const Login = (props) => {
                 </Grid>
                 <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
                     <TextField label='username' onChange={(e) => setUsername(e.target.value)} placeholder='Enter username' fullWidth required />
-                    <TextField label='passowrd' onChange={(e) => setPass1(e.target.value)} placeholder='Enter password' type='password' fullWidth required />
+                    <TextField label='password' onChange={(e) => setPass1(e.target.value)} placeholder='Enter password' type='password' fullWidth required />
                     <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
                 </form>
                 <Typography > Do you have an account ?
