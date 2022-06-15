@@ -46,7 +46,6 @@ const Signup = () => {
                 //if error (log)
                 console.log(err);
             });
-        console.log('hello');
 
 
     }
