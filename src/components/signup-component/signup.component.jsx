@@ -9,6 +9,9 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useState } from 'react';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Signup = () => {
     const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
@@ -39,7 +42,15 @@ const Signup = () => {
             (`${BaseUrl}signup`, data
                 , { headers: { "Content-Type": "application/json" } })
             .then((res) => {
-               console.log(res.data.message);
+                toast.warn(res.data.message, {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
 
             })
             .catch((err) => {
@@ -51,6 +62,7 @@ const Signup = () => {
     }
 
     return (
+
         <Grid>
             <Paper elevation={20} style={paperStyle}>
                 <Grid align='center'>
@@ -61,19 +73,31 @@ const Signup = () => {
                     <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
                 </Grid>
                 <form method="post" onSubmit={handleSubmit} enctype="multipart/form-data">
-                    <TextField fullWidth label='Username' onChange={(e) => setUsername(e.target.value)} placeholder="Enter Your Username" type="text" required/>
-                    <TextField fullWidth label='First Name' onChange={(e) => setFname(e.target.value)} placeholder="Enter Your First Name" type="text" required/>
-                    <TextField fullWidth label='Last Name' onChange={(e) => setLname(e.target.value)} placeholder="Enter Your Last Name" type="text" required/>
-                    <TextField fullWidth label='Email' onChange={(e) => setEmail(e.target.value)} placeholder="Enter Your Email Adress" type="email" required/>
-                    <TextField fullWidth label='Password' onChange={(e) => setPass1(e.target.value)} placeholder="Enter your password" type="password" required/>
-                    <TextField fullWidth label='Confirm Password' onChange={(e) => setPass2(e.target.value)} placeholder="Confirm your password" type="password" required/>
+                    <TextField fullWidth label='Username' onChange={(e) => setUsername(e.target.value)} placeholder="Enter Your Username" type="text" required />
+                    <TextField fullWidth label='First Name' onChange={(e) => setFname(e.target.value)} placeholder="Enter Your First Name" type="text" required />
+                    <TextField fullWidth label='Last Name' onChange={(e) => setLname(e.target.value)} placeholder="Enter Your Last Name" type="text" required />
+                    <TextField fullWidth label='Email' onChange={(e) => setEmail(e.target.value)} placeholder="Enter Your Email Adress" type="email" required />
+                    <TextField fullWidth label='Password' onChange={(e) => setPass1(e.target.value)} placeholder="Enter your password" type="password" required />
+                    <TextField fullWidth label='Confirm Password' onChange={(e) => setPass2(e.target.value)} placeholder="Confirm your password" type="password" required />
                     <FormControlLabel
-                        control={<Checkbox name="checkedA" required/>}
+                        control={<Checkbox name="checkedA" required />}
                         label="I accept the terms and conditions."
                     />
                     <Button type='submit' variant='contained' color='primary'>Sign up</Button>
                 </form>
             </Paper>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
         </Grid>
     )
 }
